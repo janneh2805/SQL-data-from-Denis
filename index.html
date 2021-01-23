@@ -10,8 +10,8 @@
         var attendees = [];
 
         function compareAttendees(a, b, c) {
-            if (a.fullName < b.fullName) return -1;
-            if (a.fullName > b.fullName) return 1;
+            if (a.fullname < b.fullname) return -1;
+            if (a.fullname > b.fullname) return 1;
             // we have equal full names, see company
             if (a.company < b.company) return -1;
             if (a.company > b.company) return 1;
@@ -34,7 +34,7 @@
             var attCompany = document.getElementById("attCompany").value;
             var attEmail = document.getElementById("attEmail").value;
             var attendee = {
-                fullName: attFullname,
+                fullname: attFullname,
                 company: attCompany,
                 email: attEmail,
             };
@@ -42,9 +42,9 @@
         }
 
         function resetDataEntryFields() {
-            document.getElementById("attFullName").value = "";
-            document.getElementById("attCompany").value = "";
-            document.getElementById("attEmail").value = "";
+            document.getElementById("attFullname").value = "";
+            document.getElementById("attcompany").value = "";
+            document.getElementById("attemail").value = "";
         }
 
         function displayAttendees() {
@@ -57,7 +57,7 @@
                 var row = document.createElement("tr");
 
                 var cell = document.createElement("td");
-                cell.innerHTML = attendees[i].fullame;
+                cell.innerHTML = attendees[i].fullname;
                 row.appendChild(cell);
 
                 cell = document.createElement("td");
@@ -107,7 +107,7 @@
     <div id="data-section">
         <form>
             <div>
-                <label>Full name:</label><input type="text" name="attFullName" id="attFullName">
+                <label>Full Name:</label><input type="text" name="attFullName" id="attFullName">
             </div>
             <div>
                 <label>Company:</label><input type="text" name="attCompany" id="attCompany">
@@ -123,7 +123,7 @@
         <table border='1' id="attendeesTable">
             <thead>
                 <tr>
-                    <th>Full name</th>
+                    <th>Full Name</th>
                     <th>Company</th>
                     <th>Email</th>
                 </tr>
