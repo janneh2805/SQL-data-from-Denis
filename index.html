@@ -10,8 +10,8 @@
         var attendees = [];
 
         function compareAttendees(a, b, c) {
-            if (a.fullname < b.fullname) return -1;
-            if (a.fullname > b.fullname) return 1;
+            if (a.fullname < b.fullName) return -1;
+            if (a.fullname > b.fullName) return 1;
             // we have equal full names, see company
             if (a.company < b.company) return -1;
             if (a.company > b.company) return 1;
@@ -30,11 +30,11 @@
         }
 
         function getANewAttendee() {
-            var attFullname = document.getElementById("attFullName").value;
+            var attFullName = document.getElementById("attFullName").value;
             var attCompany = document.getElementById("attCompany").value;
             var attEmail = document.getElementById("attEmail").value;
             var attendee = {
-                fullname: attFullname,
+                fullName: attFullName,
                 company: attCompany,
                 email: attEmail,
             };
@@ -42,9 +42,9 @@
         }
 
         function resetDataEntryFields() {
-            document.getElementById("attFullname").value = "";
-            document.getElementById("attcompany").value = "";
-            document.getElementById("attemail").value = "";
+            document.getElementById("attFullName").value = "";
+            document.getElementById("attCompany").value = "";
+            document.getElementById("attEmail").value = "";
         }
 
         function displayAttendees() {
