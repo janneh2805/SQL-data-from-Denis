@@ -9,15 +9,18 @@
 
         var attendees = [];
 
-        function compareAttendees(a, b, c) {
-            if (a.fullname < b.fullName) return -1;
-            if (a.fullname > b.fullName) return 1;
-            // we have equal full names, see company
-            if (a.company < b.company) return -1;
-            if (a.company > b.company) return 1;
+        function compareAttendees(a, b, c, d) {
+            if (a.firstname < b.firstname) return -1;
+            if (a.firstname > b.firstname) return 1;
+            // we have equal first names, see last name
+            if (a.lastname < b.lastname) return -1;
+            if (a.lastname > b.lastname) return 1;
 
             if (a.email < b.email) return -1;
-            if (a.email > b.email) return 1;
+            if (a.email > b.email) return 1; 
+
+            if (a.phoneno < b.phoneno) return -1;
+            if (a.phoneno > b.phoneno) return 1; 
 
 
             return 0;
@@ -30,21 +33,27 @@
         }
 
         function getANewAttendee() {
-            var attFullName = document.getElementById("attFullName").value;
-            var attCompany = document.getElementById("attCompany").value;
+            var attFirstname = document.getElementById("attFirstName").value;
+            var attLastname = document.getElementById("attLastName").value;
             var attEmail = document.getElementById("attEmail").value;
+            var attPhoneno = document.getElementById("attPhoneno").value;
+            
             var attendee = {
-                fullName: attFullName,
-                company: attCompany,
+                firstname: attFirstName,
+                company: attLastName,
                 email: attEmail,
+                email: attPhoneno,
+                
             };
             attendees.push(attendees);
         }
 
         function resetDataEntryFields() {
-            document.getElementById("attFullName").value = "";
-            document.getElementById("attCompany").value = "";
+            document.getElementById("attFirstName").value = "";
+            document.getElementById("attLastName").value = "";
             document.getElementById("attEmail").value = "";
+            document.getElementById("attPhoneno").value = "";
+           
         }
 
         function displayAttendees() {
@@ -57,17 +66,23 @@
                 var row = document.createElement("tr");
 
                 var cell = document.createElement("td");
-                cell.innerHTML = attendees[i].fullname;
+                cell.innerHTML = attendees[i].firstname;
                 row.appendChild(cell);
 
                 cell = document.createElement("td");
-                cell.innerHTML = attendees[i].company;
+                cell.innerHTML = attendees[i].lastname;
                 row.appendChild(cell);
 
                 cell = document.createElement("td");
                 cell.innerHTML = attendees[i].email;
                 row.appendChild(cell);
 
+
+                cell = document.createElement("td");
+                cell.innerHTML = attendees[i].phoneno;
+                row.appendChild(cell);
+
+                
 
                 body.appendChild(row);
             }
@@ -76,7 +91,7 @@
         function loadFromServer() {
             // AJAX request from the server
             var req = new XMLHttpRequest();
-            req.open("GET", "http://127.0.0.1:3000/");
+            req.open("GET", "http://127.0.0.1:5500/");
             req.onload = function () {
                 console.log(req.status);
                 if (req.status == 200) {
@@ -107,14 +122,18 @@
     <div id="data-section">
         <form>
             <div>
-                <label>Full Name:</label><input type="text" name="attFullName" id="attFullName">
+                <label>First Name:</label><input type="text" name="attFirstName" id="attFirstName">
             </div>
             <div>
-                <label>Company:</label><input type="text" name="attCompany" id="attCompany">
+                <label>Last Name:</label><input type="text" name="attLastName" id="attLastName">
             </div>
             <div>
                 <label>Email:</label><input type="text" name="attEmail" id="attEmail">
             </div>
+            <div>
+                <label>Phone No:</label><input type="text" name="attPhoneno" id="attPhoneno">
+            </div>
+           
             <div>
                 <input type="button" value="Register" onclick="addAttendee();">
                 <input type="button" value="Refresh" onclick="loadFromServer();">
@@ -123,9 +142,11 @@
         <table border='1' id="attendeesTable">
             <thead>
                 <tr>
-                    <th>Full Name</th>
-                    <th>Company</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
                     <th>Email</th>
+                    <th>Phone No</th>
+                   
                 </tr>
             </thead>
             <tbody id="attendeesTableBody">
